@@ -10,9 +10,13 @@ if [[ $CONFIG_VARS ]]; then
 
   JSON=`json_env --json $ARGS`
 
-  echo " ==> Writing ${CONFIG_FILE_PATH}/config.js with ${JSON}"
-
-  echo "window.__env = ${JSON}" > ${CONFIG_FILE_PATH}/config.js
+  echo " ==> Sending ${CONFIG_COOKIE} cookie with ${JSON}"
+  
 fi
+
+export DOLLAR='$'
+export CONFIG_COOKIE_CONTENT=${JSON-"{}"}
+
+envsubst < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf
 
 exec "$@"

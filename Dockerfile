@@ -1,6 +1,6 @@
 FROM nginx
 
-MAINTAINER Stepan Mazurov <stepan@socialengine.com>
+LABEL author = Simon Knott <info@simonknott.de>
 
 # This tool converts env vars into json to be injected into the config
 ADD https://s3.amazonaws.com/se-com-docs/bins/json_env /usr/local/bin/
@@ -10,10 +10,10 @@ RUN chmod +x /usr/local/bin/json_env
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 # Overwrite default config
-COPY nginx-site.conf /etc/nginx/conf.d/default.conf
+COPY nginx-site.conf /etc/nginx/conf.d/default.template
 
-# Set a path to config file to be written, can be changed at runtime
-ENV CONFIG_FILE_PATH /app
+# Set a name for config cookie, can be changed at runtime
+ENV CONFIG_COOKIE _config
 
 RUN mkdir /app
 
