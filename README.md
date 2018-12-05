@@ -2,6 +2,7 @@
 
 > Disclaimer: this is a fork of the brilliant [SocialEngine/docker-nginx-spa](https://github.com/SocialEngine/docker-nginx-spa).
 > This fork does send the env configuration via a cookie, not per file.
+> Do not use paths that contain a "." in the topmost directory (e.g. do not use "socialnetwork.com/tom.tallis" but "/u/tom.tallis")
 
 This is a Docker image used to serve a Single Page App (pure frontend javascript) using nginx, it support PushState, and includes a way to pass configuration at run time.
 
